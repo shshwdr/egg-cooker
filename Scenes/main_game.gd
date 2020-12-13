@@ -2,7 +2,7 @@ extends Node2D
 
 onready var table_path = $whole_table/Path2D
 onready var table_generator = $whole_table/Path2D/table_generator
-
+onready var tables = $whole_table/Path2D/tables
 var table_scene = preload("res://Scenes/table.tscn")
 func generate_table():
 	var length = table_path.curve.get_baked_length()
@@ -13,7 +13,7 @@ func generate_table():
 
 		var table_instance = table_scene.instance()
 		
-		$whole_table.add_child(table_instance)
+		tables.add_child(table_instance)
 		table_instance.position = table_generator.position
 		
 
