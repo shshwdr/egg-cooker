@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/egg.tscn" type="PackedScene" id=1]
-[ext_resource path="res://art/object/human.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/eater.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/eater.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Hud.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/main_game.gd" type="Script" id=5]
 
 [sub_resource type="Curve2D" id=1]
@@ -14,16 +14,7 @@ _data = {
 [node name="main_game" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="eater" type="Node2D" parent="."]
-position = Vector2( 96, 64 )
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="human" type="Sprite" parent="eater"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
+[node name="eater" parent="." instance=ExtResource( 2 )]
 
 [node name="whole_table" type="Node2D" parent="."]
 
@@ -41,3 +32,26 @@ rotate = false
 
 [node name="egg" parent="whole_table/Path2D" instance=ExtResource( 1 )]
 position = Vector2( 96, 96 )
+
+[node name="Hud" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="money" type="Label" parent="Hud"]
+margin_top = 2.0
+margin_right = 64.0
+margin_bottom = 19.0
+text = "15"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="life_left" type="Label" parent="Hud"]
+margin_top = 17.0
+margin_right = 64.0
+margin_bottom = 36.0

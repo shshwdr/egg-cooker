@@ -6,14 +6,18 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="table" type="Node2D"]
+[node name="table" type="Node2D" groups=[
+"table",
+]]
 position = Vector2( 64, 64 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=[
+"table",
+]]
 input_pickable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

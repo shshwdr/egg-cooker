@@ -19,6 +19,11 @@ config/name="egg_cooker"
 run/main_scene="res://Scenes/main_game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Util="*res://Scenes/Util.gd"
+Events="*res://Scenes/Events.gd"
+
 [display]
 
 window/size/width=512

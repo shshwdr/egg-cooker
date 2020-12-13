@@ -10,6 +10,8 @@ var cooked_level = 0
 var cooked_number = 0
 var cook_speed = 10
 
+var is_eaten = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	progress_bar.value = 0
@@ -18,12 +20,19 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	if is_eaten:
+		return
 	offset+=delta*speed
 	
 	var collidings = rigidbody.get_colliding_bodies()
 	for i in collidings:
-		if i.get_parent().is_on:
-			cooking(delta)
+		if i.is_in_group("table"):
+			if i.get_parent().is_on:
+				cooking(delta)
+		elif i.is_in_group("eater"):
+			var eater = i.get_parent()
+			if eater.request_level == cooked_level and eater.can_eat():
+				eater.eat(self)
 			
 func cooking(delta):
 	
@@ -34,7 +43,7 @@ func cooking(delta):
 	if cooked_number>=cooked_level_upgrade_number[cooked_level]:
 		cooked_number = 0
 		cooked_level+=1
-		sprite.frame = cooked_level
+		sprite.update_cooked_level(cooked_level)
 	if cooked_level == cooked_level_upgrade_number.size():
 		#burned
 		pass

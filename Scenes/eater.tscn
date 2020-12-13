@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://art/UI/dialog_body.png" type="Texture" id=2]
+[ext_resource path="res://art/UI/dialog_arrow.png" type="Texture" id=3]
+[ext_resource path="res://art/object/human.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/eater.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/egg_sprite.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.454902, 1, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.552941, 0.552941, 0.552941, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="eater" type="Node2D" groups=[
+"eater",
+]]
+position = Vector2( 96, 64 )
+script = ExtResource( 5 )
+
+[node name="human" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="request" type="Node2D" parent="."]
+
+[node name="dialog_body" type="Sprite" parent="request"]
+modulate = Color( 0.643137, 0.956863, 0.839216, 1 )
+position = Vector2( -1.96431, -43.7957 )
+scale = Vector2( 1, 1.456 )
+texture = ExtResource( 2 )
+
+[node name="dialog_arrow" type="Sprite" parent="request"]
+modulate = Color( 0.643137, 0.956863, 0.839216, 1 )
+position = Vector2( -12.1155, -24.5848 )
+texture = ExtResource( 3 )
+
+[node name="ProgressBar" type="ProgressBar" parent="request"]
+margin_left = -29.7838
+margin_top = -61.9191
+margin_right = 25.2162
+margin_bottom = -25.9191
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+value = 40.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" parent="request" instance=ExtResource( 6 )]
+position = Vector2( -6.08085, -44.3019 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=[
+"eater",
+]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 0, 6.71751 )
+shape = SubResource( 1 )
