@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/egg.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/eater.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Hud.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/main_game.gd" type="Script" id=5]
 
@@ -14,7 +13,7 @@ _data = {
 [node name="main_game" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="eater" parent="." instance=ExtResource( 2 )]
+[node name="eaters" type="Node2D" parent="."]
 
 [node name="whole_table" type="Node2D" parent="."]
 
@@ -34,10 +33,13 @@ rotate = false
 position = Vector2( 96, 96 )
 
 [node name="Hud" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 192.0
+margin_top = 160.0
+margin_right = 320.0
+margin_bottom = 200.0
 script = ExtResource( 3 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
