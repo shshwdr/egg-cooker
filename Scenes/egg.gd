@@ -20,6 +20,8 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	if Util.game_end:
+		return
 	if is_eaten:
 		return
 	offset+=delta*speed

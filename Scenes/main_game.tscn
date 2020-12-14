@@ -33,27 +33,61 @@ rotate = false
 position = Vector2( 96, 96 )
 
 [node name="Hud" type="Control" parent="."]
-margin_left = 192.0
-margin_top = 160.0
-margin_right = 320.0
-margin_bottom = 200.0
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 352.0
+margin_bottom = 256.0
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="money" type="Label" parent="Hud"]
-margin_top = 2.0
-margin_right = 64.0
-margin_bottom = 19.0
-text = "15"
-align = 1
+[node name="game_ending" type="Control" parent="Hud"]
+visible = false
+margin_right = 224.0
+margin_bottom = 128.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="life_left" type="Label" parent="Hud"]
-margin_top = 17.0
-margin_right = 64.0
-margin_bottom = 36.0
+[node name="Button" type="Button" parent="Hud/game_ending"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+text = "restart"
+
+[node name="result" type="Label" parent="Hud/game_ending"]
+anchor_right = 1.0
+margin_bottom = 64.0
+text = "you earned $100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="in_game" type="Control" parent="Hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="money" type="Label" parent="Hud/in_game"]
+anchor_right = 1.0
+margin_bottom = 32.0
+text = "15"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="life_left" type="Label" parent="Hud/in_game"]
+anchor_right = 1.0
+margin_top = 32.0
+margin_bottom = 64.0
+text = "3"
+align = 1
+valign = 1
+[connection signal="pressed" from="Hud/game_ending/Button" to="." method="_on_Button_pressed"]

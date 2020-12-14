@@ -93,9 +93,16 @@ func on_eater_fully_left(position_index):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Util.game_end:
+		return
 	if current_time>=generate_time:
 		generate_eater()
 		current_time = 0
 		generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])
 	current_time+=delta
 	
+
+
+func _on_Button_pressed():
+	Util.game_end = false
+	get_tree().reload_current_scene()

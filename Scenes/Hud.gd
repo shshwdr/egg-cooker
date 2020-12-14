@@ -3,8 +3,12 @@ extends Control
 var money
 var lifeleft
 
-onready var money_label = $money
-onready var lifeleft_label = $life_left
+onready var money_label = $in_game/money
+onready var lifeleft_label = $in_game/life_left
+
+onready var ingame = $in_game
+onready var game_end = $game_ending
+onready var result = $game_ending/result
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -14,9 +18,17 @@ func on_pay(m):
 	money+=m
 	money_label.text = String(money)
 	
+func end_game():
+	Util.game_end = true
+	result.text = "You've earned "+String(money)+". Good luck next time!"
+	game_end.visible = true
+	ingame.visible = false
+	
 func on_left():
 	lifeleft-=1
 	lifeleft_label.text = String(lifeleft)
+	if lifeleft == 0:
+		end_game()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lifeleft = 3

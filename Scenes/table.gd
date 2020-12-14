@@ -30,6 +30,8 @@ func flip():
 
 
 func _on_StaticBody2D_input_event(viewport, event, shape_idx):
+	if Util.game_end:
+		return
 	#print("well")
 	if event.is_action_pressed("click"):
 		print("hmm")
@@ -37,5 +39,7 @@ func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 
 
 func _on_StaticBody2D_mouse_entered():
+	if Util.game_end:
+		return
 	if Input.is_mouse_button_pressed(1):  # Left mouse button.
 		flip()

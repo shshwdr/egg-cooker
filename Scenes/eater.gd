@@ -57,6 +57,8 @@ func angry():
 	leave()
 
 func _process(delta):
+	if Util.game_end:
+		return
 	if got_food:
 		return
 	if is_moving:
