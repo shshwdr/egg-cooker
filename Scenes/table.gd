@@ -34,9 +34,10 @@ func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 		return
 	#print("well")
 	if event.is_action_pressed("click"):
-		print("hmm")
+		#print("hmm")
 		flip()
-
+	if event.is_action_pressed("right_click"):
+		Events.emit_signal("right_click_table")
 
 func _on_StaticBody2D_mouse_entered():
 	if Util.game_end:

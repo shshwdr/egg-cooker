@@ -3,14 +3,15 @@ extends Node2D
 onready var table_path = $whole_table/Path2D
 onready var table_generator = $whole_table/Path2D/table_generator
 onready var tables = $whole_table/Path2D/tables
-onready var eggs = $whole_table/Path2D/eggs
 onready var eaters = $eaters
 var table_scene = preload("res://Scenes/table.tscn")
 var eater_scene = preload("res://Scenes/eater.tscn")
 
+var egg_scene = preload("res://Scenes/egg.tscn")
+
 var current_time = 0
 var generate_time = 0
-var generate_range = [0,0.5]
+var generate_range = [3,6]
 
 var top_position_x_range = [3,12]
 var border = 2
@@ -39,16 +40,19 @@ func _ready():
 	generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])
 	#Util.eaters = eaters
 	Events.connect("fully_left",self,"on_eater_fully_left")
+	Events.connect("right_click_table",self,"on_right_click_table")
 	pass
 
 func generate_eater():
 	
-	var random_request = Util.rng.randi_range(1,4)
+	var random_request = Util.rng.randi_range(1,3)
 	
 	var top_count = top_position_x_range[1] - top_position_x_range[0] +1
 	var right_count = top_position_y_range[1] - top_position_y_range[0] +1
 	var total_count = top_count*2 + right_count*2-1
 	var random_position = Util.randomi_size_with_invalid_positions(total_count,eater_invalid_position)
+#	if (eater_invalid_position.get(random_position,false)):
+#		return
 	if random_position <0:
 		return
 	var d_position
@@ -101,7 +105,22 @@ func _process(delta):
 		generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])
 	current_time+=delta
 	
-
+func on_right_click_table():
+	var mouse_position = get_viewport().get_mouse_position()
+	var offset = table_path.curve.get_closest_offset(mouse_position)
+	
+	
+	for i in table_path.get_children():
+		if i.is_in_group("egg"):
+			if abs(offset - i.offset)<32:
+				return
+	var egg_instance = egg_scene.instance()
+	egg_instance.offset = offset
+	table_path.add_child(egg_instance)
+	print("create egg")
+	
+	
+	
 
 func _on_Button_pressed():
 	Util.game_end = false

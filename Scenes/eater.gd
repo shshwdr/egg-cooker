@@ -1,6 +1,6 @@
 extends Node2D
 
-var request_level = 1
+export var request_level = 1
 onready var sprite = $request/Sprite
 onready var progress_bar = $request/ProgressBar
 onready var request = $request
@@ -12,7 +12,7 @@ var is_leaving
 
 var patient_max = 100
 var patient
-var patient_speed = 1
+var patient_speed = 0.07
 
 var is_moving = true
 var target_position
@@ -42,8 +42,9 @@ func _ready():
 	sprite.update_cooked_level(request_level)
 	patient = patient_max
 	request.visible = false
-	human.position = origin_position
-	yield(move(),"completed")
+	if origin_position:
+		human.position = origin_position
+		yield(move(),"completed")
 	request.visible = true
 	
 	pass # Replace with function body.

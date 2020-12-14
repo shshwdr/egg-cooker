@@ -3,9 +3,9 @@ extends PathFollow2D
 onready var rigidbody = $RigidBody2D
 onready var sprite = $RigidBody2D/Sprite
 onready var progress_bar = $ProgressBar
-var speed = 100
+var speed = 70
 #rare, medium_rare, medium, medium_well, well_done, overcooked
-var cooked_level_upgrade_number = [25,50,50,100,50]
+var cooked_level_upgrade_number = [25,50,100,50]
 var cooked_level = 0
 var cooked_number = 0
 var cook_speed = 10

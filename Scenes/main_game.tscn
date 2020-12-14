@@ -1,6 +1,5 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scenes/egg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Hud.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/main_game.gd" type="Script" id=5]
 
@@ -22,15 +21,10 @@ curve = SubResource( 1 )
 
 [node name="tables" type="Node2D" parent="whole_table/Path2D"]
 
-[node name="eggs" type="Node2D" parent="whole_table/Path2D"]
-
 [node name="table_generator" type="PathFollow2D" parent="whole_table/Path2D"]
 position = Vector2( 96, 96 )
 scale = Vector2( 1, 1 )
 rotate = false
-
-[node name="egg" parent="whole_table/Path2D" instance=ExtResource( 1 )]
-position = Vector2( 96, 96 )
 
 [node name="Hud" type="Control" parent="."]
 margin_left = 128.0
