@@ -12,7 +12,7 @@ var is_leaving
 
 var patient_max = 100
 var patient
-var patient_speed = 0.07
+var patient_speed = 0.04
 
 var is_moving = true
 var target_position

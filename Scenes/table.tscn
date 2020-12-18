@@ -1,10 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://art/UI/checkmark.png" type="Texture" id=1]
+[ext_resource path="res://art/object/stove_off.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/table.gd" type="Script" id=2]
+[ext_resource path="res://art/object/stove_on.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
 
 [node name="table" type="Node2D" groups=[
 "table",
@@ -23,8 +42,12 @@ input_pickable = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="sprite" type="Sprite" parent="StaticBody2D"]
-scale = Vector2( 2, 2 )
+[node name="off" type="Sprite" parent="StaticBody2D"]
 texture = ExtResource( 1 )
+
+[node name="on" type="AnimatedSprite" parent="StaticBody2D"]
+visible = false
+frames = SubResource( 4 )
+playing = true
 [connection signal="input_event" from="StaticBody2D" to="." method="_on_StaticBody2D_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="." method="_on_StaticBody2D_mouse_entered"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/egg-Sheet2.png-93bb72956292c67d516c0345d412eccd.stex"
+path="res://.import/table.png-217fb48b8884801a361aad9717ed8f51.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/object/egg-Sheet2.png"
-dest_files=[ "res://.import/egg-Sheet2.png-93bb72956292c67d516c0345d412eccd.stex" ]
+source_file="res://art/object/table.png"
+dest_files=[ "res://.import/table.png-217fb48b8884801a361aad9717ed8f51.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

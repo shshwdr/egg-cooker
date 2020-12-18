@@ -1,12 +1,11 @@
 extends Node2D
 
 
-var off_texture = preload("res://art/UI/checkmark.png")
-var on_texture = preload("res://art/UI/cancel.png")
+onready var on = $StaticBody2D/on
+onready var off = $StaticBody2D/off
 var is_on = false
+var can_put_egg = false
 
-
-onready var sprite = $StaticBody2D/sprite
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,9 +18,11 @@ func _ready():
 func flip():
 	is_on = not is_on
 	if is_on:
-		sprite.texture = on_texture
+		on.visible = true
+		off.visible = false
 	else:
-		sprite.texture = off_texture
+		on.visible = false
+		off.visible = true
 
 #func _on_Control_mouse_entered():
 #	print("enter table")
@@ -32,15 +33,20 @@ func flip():
 func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 	if Util.game_end:
 		return
+	if Util.hold_egg :
+		return
 	#print("well")
 	if event.is_action_pressed("click"):
 		#print("hmm")
 		flip()
-	if event.is_action_pressed("right_click"):
+	if can_put_egg  and event.is_action_pressed("right_click"):
 		Events.emit_signal("right_click_table")
 
 func _on_StaticBody2D_mouse_entered():
 	if Util.game_end:
+		return
+		
+	if Util.hold_egg :
 		return
 	if Input.is_mouse_button_pressed(1):  # Left mouse button.
 		flip()
