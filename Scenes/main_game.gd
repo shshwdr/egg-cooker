@@ -9,6 +9,8 @@ var egg_wholes = []
 
 var table_scene = preload("res://Scenes/table.tscn")
 var eater_scene = preload("res://Scenes/eater.tscn")
+
+var urgent_eater_scene = preload("res://Scenes/urgent_eater.tscn")
 var egg_whole_scene = preload("res://Scenes/egg_whole.tscn")
 
 var chicken_scene = preload("res://Scenes/chicken.tscn")
@@ -17,7 +19,8 @@ var egg_scene = preload("res://Scenes/egg.tscn")
 
 var current_time = 0
 var generate_time = 0
-var generate_range = [3,6]
+var generate_range = [5,8]
+var generate_scale = 1
 
 var top_position_x_range = [3,12]
 var border = 2
@@ -27,6 +30,8 @@ var top_origin_position_y = -1
 var eater_invalid_position = {}
 
 var money_add
+
+
 
 var first_egg = true
 
@@ -49,7 +54,7 @@ func generate_table():
 func _ready():
 	generate_table()
 	egg_generation()
-	generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])
+	generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])*generate_scale
 	#Util.eaters = eaters
 	Events.connect("fully_left",self,"on_eater_fully_left")
 	Events.connect("right_click_table",self,"on_right_click_table")
@@ -57,7 +62,7 @@ func _ready():
 
 func generate_eater():
 	
-	var random_request = 0#Util.rng.randi_range(1,3)
+	var random_request = Util.rng.randi_range(1,3)
 	
 	var top_count = top_position_x_range[1] - top_position_x_range[0] +1
 	var right_count = top_position_y_range[1] - top_position_y_range[0] +1
@@ -97,7 +102,16 @@ func generate_eater():
 		return
 	
 	eater_invalid_position[random_position] = true
-	var eater_instance = eater_scene.instance()
+	
+	var selected_scene = eater_scene
+	if Util.money>100:
+		var rand = Util.rng.randf()
+		if Util.money>300:
+			if rand>0.85:
+				selected_scene = urgent_eater_scene
+		elif rand > 0.7:
+			selected_scene = urgent_eater_scene
+	var eater_instance = selected_scene.instance()
 	eater_instance.init(random_request,d_origin,d_position,random_position)
 	
 	eaters.add_child(eater_instance)
@@ -106,11 +120,15 @@ func generate_eater():
 	
 func egg_generation():
 	
-	var should_generate_chicken = true
+	var should_generate_chicken = (Util.rng.randf()>0.6)
 	
-	#if first_egg:
-		#should_generate_chicken = false
-	var chicken_position = Util.rng.randi()%7
+	if first_egg:
+		should_generate_chicken = false
+		first_egg = false
+		
+	var chicken_position = -1
+	if should_generate_chicken:
+		chicken_position = Util.rng.randi_range(2,6)
 	
 	var egg_position = $table/egg_start.position
 	for i in range(7):
@@ -121,19 +139,26 @@ func egg_generation():
 		$table.add_child(egg_whole_instance)
 		egg_wholes.append(egg_whole_instance)
 		egg_position+=Vector2(32,0)
-	should_generate_chicken = false
 	
 func on_eater_fully_left(position_index):
 	eater_invalid_position.erase(position_index)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Util.money >400:
+		generate_scale = 0.5
+	elif Util.money >300:
+		generate_scale = 0.7
+	elif Util.money >200:
+		generate_scale = 0.8
+	elif Util.money >100:
+		generate_scale = 0.9
 	if Util.game_end:
 		return
 	if current_time>=generate_time:
 		generate_eater()
 		current_time = 0
-		generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])
+		generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])*generate_scale
 	current_time+=delta
 	
 func on_right_click_table():

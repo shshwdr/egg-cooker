@@ -25,6 +25,7 @@ func on_pay(m):
 	money_add_instance.rect_position = money_label.rect_position
 	money+=m
 	money_label.text = String(money)
+	Util.money = money
 	
 func end_game():
 	failed_sound.play()
@@ -50,6 +51,8 @@ func _ready():
 	money = 0
 	money_label.text = String(money)
 	lifeleft_label.text = String(lifeleft)
+	
+	
 	
 	$in_game/hint_stove/AnimationPlayer.play("hint")
 	$in_game/hint_table/AnimationPlayer.play("hint")

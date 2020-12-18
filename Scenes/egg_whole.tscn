@@ -8,7 +8,7 @@ extents = Vector2( 15, 16 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "shaking"
-length = 2.0
+length = 1.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("egg_whole:rotation_degrees")
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.201, 0.202, 0.261323, 0.321814, 0.370812, 0.41497, 0.461597, 0.509539, 0.6, 1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.0, 0.0, 10.0, 5.0, 12.0, 4.0, 15.0, 3.0, 0.0, 0.0 ]
+"values": [ 0.0, 0.0, 0.0, 15.0, 5.0, 18.0, 4.0, 20.0, 3.0, 0.0, 0.0 ]
 }
 
 [node name="egg_whole" type="KinematicBody2D"]

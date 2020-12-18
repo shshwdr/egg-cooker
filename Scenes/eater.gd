@@ -17,7 +17,7 @@ var is_finishing
 
 var patient_max = 100
 var patient
-var patient_speed =0.04
+export var patient_speed =0.04
 
 
 var is_moving = true
@@ -125,7 +125,7 @@ func on_found_chicken():
 		return
 	else:
 		$AudioStreamPlayer2D.stream = load("res://sound/aww.wav")
-		$AudioStreamPlayer2D.volume_db = 0
+		$AudioStreamPlayer2D.volume_db = 6
 		$AudioStreamPlayer2D.play()
 		patient = patient_max
 		update_patient_bar()
