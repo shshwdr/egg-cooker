@@ -23,6 +23,7 @@ func _physics_process(delta):
 	if Util.game_end:
 		return
 	if is_eaten:
+		progress_bar.visible = false
 		return
 	offset+=delta*speed
 	

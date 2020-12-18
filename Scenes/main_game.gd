@@ -34,8 +34,9 @@ func generate_table():
 		#yield(get_tree(), 'idle_frame')
 
 		var table_instance = table_scene.instance()
-		if i >=16 and i<=23:
+		if i >=19 and i<=20:
 			table_instance.can_put_egg = true
+			
 		tables.add_child(table_instance)
 		table_instance.position = table_generator.position
 		
@@ -52,7 +53,7 @@ func _ready():
 
 func generate_eater():
 	
-	var random_request = Util.rng.randi_range(1,3)
+	var random_request = 0#Util.rng.randi_range(1,3)
 	
 	var top_count = top_position_x_range[1] - top_position_x_range[0] +1
 	var right_count = top_position_y_range[1] - top_position_y_range[0] +1
@@ -134,11 +135,12 @@ func on_right_click_table():
 	
 	if egg_wholes.size()>0:
 		
-		var egg_whole = egg_wholes.pop_front()
+		var egg_whole = egg_wholes.front()
 		
 		if egg_whole.is_chicken:
 			var chicken_instance = chicken_scene.instance()
 			$chickens.add_child(chicken_instance)
+			chicken_instance.position = mouse_position
 		else:
 			for i in table_path.get_children():
 				if i.is_in_group("egg"):
@@ -148,6 +150,7 @@ func on_right_click_table():
 			egg_instance.offset = offset
 			table_path.add_child(egg_instance)
 		
+		egg_wholes.pop_front()
 		egg_whole.queue_free()
 		
 		if egg_wholes.empty():

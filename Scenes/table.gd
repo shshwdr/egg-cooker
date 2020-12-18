@@ -37,16 +37,19 @@ func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 		return
 	#print("well")
 	if event.is_action_pressed("click"):
+		if can_put_egg:
+			Events.emit_signal("right_click_table")
+		else:
 		#print("hmm")
-		flip()
-	if can_put_egg  and event.is_action_pressed("right_click"):
-		Events.emit_signal("right_click_table")
+			flip()
+#	if can_put_egg  and event.is_action_pressed("right_click"):
+#		Events.emit_signal("right_click_table")
 
 func _on_StaticBody2D_mouse_entered():
 	if Util.game_end:
 		return
 		
-	if Util.hold_egg :
+	if can_put_egg :
 		return
 	if Input.is_mouse_button_pressed(1):  # Left mouse button.
 		flip()

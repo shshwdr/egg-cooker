@@ -10,6 +10,9 @@ var move_time = 2
 var got_food = false
 var is_leaving
 
+var is_angry
+var is_happy
+
 var patient_max = 100
 var patient
 var patient_speed = 0.04
@@ -55,6 +58,7 @@ func can_eat():
 func angry():
 	Events.emit_signal("left")
 	is_leaving = true
+	angry_anim()
 	leave()
 
 func _process(delta):
@@ -80,12 +84,39 @@ func leave():
 func pay():
 	Events.emit_signal("pay",10)
 		
+func angry_anim():
+	sprite.visible = false
+	$request/happy.visible = true
+	$AnimationPlayer.play("happy")
+	yield($AnimationPlayer,"animation_finished")
+	
+	sprite.visible = true
+		
+func happy():
+	sprite.visible = false
+	progress_bar.value = 100
+	$request/happy.visible = true
+	$AnimationPlayer.play("happy")
+	yield($AnimationPlayer,"animation_finished")
+	
+	sprite.visible = true
+		
 func eat(egg):
+	
+	
 	got_food = true
 	egg.is_eaten = true
-	egg.position = position
+	#egg.position = position
 	
-	yield(get_tree().create_timer(1), "timeout")
+	happy()
+	tween.interpolate_property(
+				egg, 
+				"position", 
+				egg.position,position, 0.5,
+				Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.start()
+	yield(tween,"tween_completed")
+	
 	egg.queue_free()
 	pay()
 	leave()
