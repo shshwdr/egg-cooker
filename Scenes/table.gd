@@ -3,11 +3,21 @@ extends Node2D
 
 onready var on = $StaticBody2D/on
 onready var off = $StaticBody2D/off
+onready var conveyor = $StaticBody2D/conveyor
 var is_on = false
 var can_put_egg = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if can_put_egg:
+		on.visible = false
+		off.visible = false
+		conveyor.visible = true
+	else:
+		
+		on.visible = false	
+		off.visible = true
+		conveyor.visible = false
 	pass # Replace with function body.
 
 

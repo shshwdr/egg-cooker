@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://art/object/heart.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/dialog_body.png" type="Texture" id=2]
@@ -7,8 +7,9 @@
 [ext_resource path="res://Scenes/eater.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/egg_sprite.tscn" type="PackedScene" id=6]
 [ext_resource path="res://art/object/angry.png" type="Texture" id=7]
+[ext_resource path="res://sound/533267__dataoperativex__conveniencestorering.wav" type="AudioStream" id=8]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.454902, 1, 0, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -20,7 +21,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.552941, 0.552941, 0.552941, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -31,10 +32,10 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "angry"
 tracks/0/type = "value"
 tracks/0/path = NodePath("request/angry:rotation_degrees")
@@ -61,8 +62,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0.5 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "happy"
+[sub_resource type="Animation" id=5]
 length = 0.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("request/happy:scale")
@@ -134,8 +134,8 @@ margin_top = -62.0677
 margin_right = 36.2163
 margin_bottom = -26.0677
 rect_scale = Vector2( 0.7, 1 )
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 value = 40.0
 percent_visible = false
@@ -163,11 +163,16 @@ texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 0, 6.71751 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.5
-anims/angry = SubResource( 5 )
-anims/happy = SubResource( 4 )
+anims/angry = SubResource( 4 )
+anims/happy = SubResource( 5 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = -6.0
+autoplay = true

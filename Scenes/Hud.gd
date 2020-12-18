@@ -10,6 +10,8 @@ onready var ingame = $in_game
 onready var game_end = $game_ending
 onready var result = $game_ending/result
 
+onready var failed_sound = $failedSound
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,6 +21,7 @@ func on_pay(m):
 	money_label.text = String(money)
 	
 func end_game():
+	failed_sound.play()
 	Util.game_end = true
 	result.text = "You've earned "+String(money)+". Good luck next time!"
 	game_end.visible = true

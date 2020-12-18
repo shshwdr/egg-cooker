@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/egg_sprite.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/egg.gd" type="Script" id=2]
+[ext_resource path="res://sound/511742__samuelgremaud__frying-bacon.wav" type="AudioStream" id=3]
+[ext_resource path="res://sound/521973__kastenfrosch__error.ogg" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -63,3 +65,11 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+
+[node name="burned" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 24.0

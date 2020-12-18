@@ -16,6 +16,9 @@ func randomi_size_with_invalid_positions(size,invalid_position, loop_count = 100
 			pass
 			#print("duplicated")
 	return -1
+	
+func random_vector2(x,y):
+	return Vector2(rng.randi()%x, rng.randi()%y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

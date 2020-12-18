@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/240195__doctor-jekyll__wah-wah-trumpet-failed-joke-punch-line.wav-1d8b58f4ee2e73435de87e6d41c852d7.sample"
+
+[deps]
+
+source_file="res://sound/240195__doctor-jekyll__wah-wah-trumpet-failed-joke-punch-line.wav"
+dest_files=[ "res://.import/240195__doctor-jekyll__wah-wah-trumpet-failed-joke-punch-line.wav-1d8b58f4ee2e73435de87e6d41c852d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

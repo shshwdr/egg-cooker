@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bensound-funnysong.ogg-641793453b0b2e52626b29b37c372429.oggstr"
+
+[deps]
+
+source_file="res://sound/bensound-funnysong.ogg"
+dest_files=[ "res://.import/bensound-funnysong.ogg-641793453b0b2e52626b29b37c372429.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

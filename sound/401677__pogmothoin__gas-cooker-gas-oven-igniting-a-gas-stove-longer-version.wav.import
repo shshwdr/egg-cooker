@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/401677__pogmothoin__gas-cooker-gas-oven-igniting-a-gas-stove-longer-version.wav-9b543d0174bf0a463cdddb0ac0a0d292.sample"
+
+[deps]
+
+source_file="res://sound/401677__pogmothoin__gas-cooker-gas-oven-igniting-a-gas-stove-longer-version.wav"
+dest_files=[ "res://.import/401677__pogmothoin__gas-cooker-gas-oven-igniting-a-gas-stove-longer-version.wav-9b543d0174bf0a463cdddb0ac0a0d292.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

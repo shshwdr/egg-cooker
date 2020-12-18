@@ -13,6 +13,8 @@ var is_leaving
 var is_angry
 var is_happy
 
+var is_finishing
+
 var patient_max = 100
 var patient
 var patient_speed = 0.04
@@ -50,6 +52,8 @@ func _ready():
 		yield(move(),"completed")
 	request.visible = true
 	
+	Events.connect("found_chicken",self,"on_found_chicken")
+	
 	pass # Replace with function body.
 
 func can_eat():
@@ -58,8 +62,13 @@ func can_eat():
 func angry():
 	Events.emit_signal("left")
 	is_leaving = true
-	angry_anim()
+	
+	yield(angry_anim(),"completed")
 	leave()
+
+func update_patient_bar():
+	
+	progress_bar.value = patient/float(patient_max)*100
 
 func _process(delta):
 	if Util.game_end:
@@ -69,7 +78,7 @@ func _process(delta):
 	if is_moving:
 		return
 	patient-=patient_speed
-	progress_bar.value = patient/float(patient_max)*100
+	update_patient_bar()
 	if patient<=0:
 		angry()
 
@@ -82,12 +91,17 @@ func leave():
 	queue_free()
 	
 func pay():
+	$AudioStreamPlayer2D.stream = load("res://sound/209578__zott820__cash-register-purchase.wav")
+	$AudioStreamPlayer2D.play()
 	Events.emit_signal("pay",10)
 		
 func angry_anim():
+	$AudioStreamPlayer2D.stream = load("res://sound/wrong.wav")
+	$AudioStreamPlayer2D.volume_db = 0
+	$AudioStreamPlayer2D.play()
 	sprite.visible = false
-	$request/happy.visible = true
-	$AnimationPlayer.play("happy")
+	$request/angry.visible = true
+	$AnimationPlayer.play("angry")
 	yield($AnimationPlayer,"animation_finished")
 	
 	sprite.visible = true
@@ -100,6 +114,17 @@ func happy():
 	yield($AnimationPlayer,"animation_finished")
 	
 	sprite.visible = true
+	
+func on_found_chicken():
+	if not can_eat():
+		return
+	else:
+		$AudioStreamPlayer2D.stream = load("res://sound/aww.wav")
+		$AudioStreamPlayer2D.volume_db = 0
+		$AudioStreamPlayer2D.play()
+		patient = patient_max
+		update_patient_bar()
+		happy()
 		
 func eat(egg):
 	
@@ -107,15 +132,17 @@ func eat(egg):
 	got_food = true
 	egg.is_eaten = true
 	#egg.position = position
-	
-	happy()
+	$AudioStreamPlayer2D.stream = load("res://sound/yummy.wav")
+	$AudioStreamPlayer2D.volume_db = 18
+	$AudioStreamPlayer2D.play()
+	#happy()
 	tween.interpolate_property(
 				egg, 
 				"position", 
 				egg.position,position, 0.5,
 				Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
-	yield(tween,"tween_completed")
+	yield(happy(),"completed")
 	
 	egg.queue_free()
 	pay()

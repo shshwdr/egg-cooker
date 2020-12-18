@@ -26,6 +26,8 @@ var top_position_y_range = [3,9]
 var top_origin_position_y = -1
 var eater_invalid_position = {}
 
+var first_egg = true
+
 func generate_table():
 	var length = table_path.curve.get_baked_length()
 	print("length ",length)
@@ -103,6 +105,9 @@ func generate_eater():
 func egg_generation():
 	
 	var should_generate_chicken = true
+	
+	#if first_egg:
+		#should_generate_chicken = false
 	var chicken_position = Util.rng.randi()%7
 	
 	var egg_position = $table/egg_start.position
@@ -114,6 +119,7 @@ func egg_generation():
 		$table.add_child(egg_whole_instance)
 		egg_wholes.append(egg_whole_instance)
 		egg_position+=Vector2(32,0)
+	should_generate_chicken = false
 	
 func on_eater_fully_left(position_index):
 	eater_invalid_position.erase(position_index)
@@ -141,6 +147,7 @@ func on_right_click_table():
 			var chicken_instance = chicken_scene.instance()
 			$chickens.add_child(chicken_instance)
 			chicken_instance.position = mouse_position
+			Events.emit_signal("found_chicken")
 		else:
 			for i in table_path.get_children():
 				if i.is_in_group("egg"):
