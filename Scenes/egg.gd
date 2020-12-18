@@ -63,6 +63,8 @@ func cooking(delta):
 		#burned
 		progress_bar.visible = false
 		$burned.play()
+		
+		Util.camera.start_shake(0.2,0.02,2)
 	else:
 		progress_bar.visible = true
 		progress_bar.value = cooked_number/float(cooked_level_upgrade_number[cooked_level])*100

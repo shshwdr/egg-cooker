@@ -17,7 +17,8 @@ var is_finishing
 
 var patient_max = 100
 var patient
-var patient_speed = 0.04
+var patient_speed =0.04
+
 
 var is_moving = true
 var target_position
@@ -60,6 +61,7 @@ func can_eat():
 	return not got_food and not is_leaving and not is_moving
 
 func angry():
+	
 	Events.emit_signal("left")
 	is_leaving = true
 	
@@ -76,6 +78,8 @@ func _process(delta):
 	if got_food:
 		return
 	if is_moving:
+		return
+	if is_leaving:
 		return
 	patient-=patient_speed
 	update_patient_bar()
@@ -96,6 +100,7 @@ func pay():
 	Events.emit_signal("pay",10)
 		
 func angry_anim():
+	Util.camera.start_shake(0.4,0.02,4)
 	$AudioStreamPlayer2D.stream = load("res://sound/wrong.wav")
 	$AudioStreamPlayer2D.volume_db = 0
 	$AudioStreamPlayer2D.play()

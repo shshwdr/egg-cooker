@@ -2,6 +2,7 @@ extends Node
 
 var game_end=false
 var hold_egg = false
+var camera
 
 var rng:RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready():

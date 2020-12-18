@@ -81,5 +81,5 @@ anims/walk = SubResource( 2 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-volume_db = 12.0
+volume_db = 18.0
 autoplay = true
