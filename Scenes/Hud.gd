@@ -3,6 +3,9 @@ extends Control
 var money
 var lifeleft
 
+var money_add = preload("res://Scenes/money_add.tscn")
+var life_decrease = preload("res://Scenes/life_decrease.tscn")
+
 onready var money_label = $in_game/money
 onready var lifeleft_label = $in_game/life_left
 
@@ -17,6 +20,9 @@ onready var failed_sound = $failedSound
 # var b = "text"
 
 func on_pay(m):
+	var money_add_instance = money_add.instance()
+	ingame.add_child(money_add_instance)
+	money_add_instance.rect_position = money_label.rect_position
 	money+=m
 	money_label.text = String(money)
 	
@@ -28,6 +34,12 @@ func end_game():
 	ingame.visible = false
 	
 func on_left():
+	
+	var life_decrease_instance = life_decrease.instance()
+	ingame.add_child(life_decrease_instance)
+	
+	life_decrease_instance.rect_position = lifeleft_label.rect_position
+	
 	lifeleft-=1
 	lifeleft_label.text = String(lifeleft)
 	if lifeleft == 0:

@@ -50,6 +50,7 @@ texture = ExtResource( 1 )
 [node name="on" type="AnimatedSprite" parent="StaticBody2D"]
 visible = false
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="conveyor" type="TextureRect" parent="StaticBody2D"]

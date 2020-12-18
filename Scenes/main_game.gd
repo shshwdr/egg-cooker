@@ -26,6 +26,8 @@ var top_position_y_range = [3,9]
 var top_origin_position_y = -1
 var eater_invalid_position = {}
 
+var money_add
+
 var first_egg = true
 
 func generate_table():
