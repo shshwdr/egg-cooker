@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/object/chicken2-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/chicken.gd" type="Script" id=2]
@@ -67,7 +67,11 @@ tracks/0/keys = {
 "values": [ 0, 2, 3, 4 ]
 }
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 16 )
+
+[node name="Node2D" type="KinematicBody2D"]
+input_pickable = true
 script = ExtResource( 2 )
 
 [node name="chicken2-Sheet" type="Sprite" parent="."]
@@ -83,3 +87,7 @@ anims/walk = SubResource( 2 )
 stream = ExtResource( 3 )
 volume_db = 18.0
 autoplay = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+[connection signal="input_event" from="." to="." method="_on_Node2D_input_event"]
