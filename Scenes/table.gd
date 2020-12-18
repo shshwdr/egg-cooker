@@ -50,6 +50,7 @@ func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 		if can_put_egg:
 			Events.emit_signal("right_click_table")
 		else:
+			Events.emit_signal("turn_on")
 		#print("hmm")
 			flip()
 #	if can_put_egg  and event.is_action_pressed("right_click"):

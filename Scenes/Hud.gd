@@ -39,12 +39,23 @@ func _ready():
 	money_label.text = String(money)
 	lifeleft_label.text = String(lifeleft)
 	
+	$in_game/hint_stove/AnimationPlayer.play("hint")
+	$in_game/hint_table/AnimationPlayer.play("hint")
+	
 	Events.connect("pay",self,"on_pay")
 	
 	Events.connect("left",self,"on_left")
+	
+	Events.connect("turn_on",self,"on_turn_on")
+	
+	Events.connect("right_click_table",self,"on_crack_egg")
 	pass # Replace with function body.
 
-
+func on_turn_on():
+	$in_game/hint_stove.visible = false
+	
+func on_crack_egg():
+	$in_game/hint_table.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

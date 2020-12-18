@@ -125,7 +125,7 @@ func on_found_chicken():
 		return
 	else:
 		$AudioStreamPlayer2D.stream = load("res://sound/aww.wav")
-		$AudioStreamPlayer2D.volume_db = 0
+		$AudioStreamPlayer2D.volume_db = -6
 		$AudioStreamPlayer2D.play()
 		patient = patient_max
 		update_patient_bar()
