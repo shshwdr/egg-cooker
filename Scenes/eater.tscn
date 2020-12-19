@@ -33,7 +33,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 16, 16 )
+extents = Vector2( 16, 45.4807 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "angry"
@@ -163,7 +163,7 @@ texture = ExtResource( 7 )
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 0, 6.71751 )
+position = Vector2( 0, -23.013 )
 shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]

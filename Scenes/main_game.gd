@@ -130,6 +130,7 @@ func egg_generation():
 	if should_generate_chicken:
 		chicken_position = Util.rng.randi_range(2,6)
 	
+	#chicken_position = 2
 	var egg_position = $table/egg_start.position
 	for i in range(7):
 		var egg_whole_instance = egg_whole_scene.instance()

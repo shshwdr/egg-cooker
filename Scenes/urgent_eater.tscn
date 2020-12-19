@@ -7,5 +7,4 @@
 patient_speed = 0.08
 
 [node name="human" parent="." index="0"]
-position = Vector2( 0, -10 )
 texture = ExtResource( 2 )

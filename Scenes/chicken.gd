@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 var is_moving = true
 var target_p 
@@ -56,7 +56,22 @@ func _process(delta):
 	
 
 func try_put_egg():
-	fly_to_target()
+	
+	#if collide with eater
+	var collidings = get_colliding_bodies()
+	var given = false
+	for i in collidings:
+		if i.is_in_group("eater"):
+			var eater = i.get_parent()
+			if eater.can_eat():
+				eater.on_found_chicken()
+				given = true
+	if given:
+		Events.emit_signal("give_chicken")
+		queue_free()
+		pass
+	else:
+		fly_to_target()
 
 
 func _on_Node2D_input_event(viewport, event, shape_idx):

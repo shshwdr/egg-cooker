@@ -57,6 +57,8 @@ func _ready():
 	$in_game/hint_stove/AnimationPlayer.play("hint")
 	$in_game/hint_table/AnimationPlayer.play("hint")
 	
+	$in_game/hint_chicken/AnimationPlayer.play("hint")
+	
 	Events.connect("pay",self,"on_pay")
 	
 	Events.connect("left",self,"on_left")
@@ -64,7 +66,19 @@ func _ready():
 	Events.connect("turn_on",self,"on_turn_on")
 	
 	Events.connect("right_click_table",self,"on_crack_egg")
+	
+	Events.connect("give_chicken",self,"on_give_chicken")
+	Events.connect("found_chicken",self,"on_found_chicken")
 	pass # Replace with function body.
+
+func on_found_chicken():
+	
+	$in_game/hint_chicken.visible = true
+
+
+func on_give_chicken():
+	
+	$in_game/hint_chicken.visible = false
 
 func on_turn_on():
 	$in_game/hint_stove.visible = false
