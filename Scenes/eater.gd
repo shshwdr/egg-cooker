@@ -96,6 +96,7 @@ func leave():
 	
 func pay():
 	$AudioStreamPlayer2D.stream = load("res://sound/209578__zott820__cash-register-purchase.wav")
+	$AudioStreamPlayer2D.volume_db = 12
 	$AudioStreamPlayer2D.play()
 	Events.emit_signal("pay",10)
 		

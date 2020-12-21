@@ -173,7 +173,7 @@ playback_speed = 0.5
 anims/angry = SubResource( 4 )
 anims/happy = SubResource( 5 )
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -6.0
 autoplay = true

@@ -82,8 +82,9 @@ func on_give_chicken():
 
 func on_turn_on():
 	$in_game/hint_stove.visible = false
+	$in_game/hint_cook.visible = true
 	
-func on_crack_egg():
+func on_crack_egg(position):
 	$in_game/hint_table.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

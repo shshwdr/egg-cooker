@@ -37,7 +37,6 @@ var first_egg = true
 
 func generate_table():
 	var length = table_path.curve.get_baked_length()
-	print("length ",length)
 	for i in range(0,30):
 		table_generator.offset=i*32
 		#yield(get_tree(), 'idle_frame')
@@ -106,10 +105,13 @@ func generate_eater():
 	var selected_scene = eater_scene
 	if Util.money>100:
 		var rand = Util.rng.randf()
-		if Util.money>300:
-			if rand>0.85:
+		if Util.money>500:
+			if rand>0.3:
 				selected_scene = urgent_eater_scene
-		elif rand > 0.7:
+		elif Util.money>300:
+			if rand>0.6:
+				selected_scene = urgent_eater_scene
+		elif rand > 0.8:
 			selected_scene = urgent_eater_scene
 	var eater_instance = selected_scene.instance()
 	eater_instance.init(random_request,d_origin,d_position,random_position)
@@ -120,7 +122,7 @@ func generate_eater():
 	
 func egg_generation():
 	
-	var should_generate_chicken = (Util.rng.randf()>0.6)
+	var should_generate_chicken = (Util.rng.randf()>0.5)
 	
 	if first_egg:
 		should_generate_chicken = false
@@ -146,6 +148,7 @@ func on_eater_fully_left(position_index):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if Util.money >400:
 		generate_scale = 0.5
 	elif Util.money >300:
@@ -162,8 +165,11 @@ func _process(delta):
 		generate_time = Util.rng.randf_range(generate_range[0],generate_range[1])*generate_scale
 	current_time+=delta
 	
-func on_right_click_table():
-	var mouse_position = get_viewport().get_mouse_position()
+func on_right_click_table(position):
+	print("get_viewport().get_size_override() ",get_viewport().get_size_override() )
+	print("OS.window_size ",OS.window_size)
+	print("get_viewport().size, ",get_viewport().size)
+	var mouse_position = get_global_mouse_position() 
 	var offset = table_path.curve.get_closest_offset(mouse_position)
 	
 	
@@ -194,8 +200,6 @@ func on_right_click_table():
 		return
 	
 	
-	
-	print("create egg")
 	
 	
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/platformer.png-d1d94f5ad711b4309ea3da4388159a93.stex"
+path="res://.import/cover iamge.png-e5073ef522c09d7956dc486dfd62c87e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/map/platformer.png"
-dest_files=[ "res://.import/platformer.png-d1d94f5ad711b4309ea3da4388159a93.stex" ]
+source_file="res://art/cover iamge.png"
+dest_files=[ "res://.import/cover iamge.png-e5073ef522c09d7956dc486dfd62c87e.stex" ]
 
 [params]
 

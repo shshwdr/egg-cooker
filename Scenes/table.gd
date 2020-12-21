@@ -7,6 +7,10 @@ onready var conveyor = $StaticBody2D/conveyor
 var is_on = false
 var can_put_egg = false
 
+var last_time = 0
+var hack_time = 0.01
+var current_time = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if can_put_egg:
@@ -22,8 +26,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	current_time +=delta
 
 func flip():
 	is_on = not is_on
@@ -46,15 +50,19 @@ func _on_StaticBody2D_input_event(viewport, event, shape_idx):
 	if Util.hold_egg :
 		return
 	#print("well")
-	if event.is_action_pressed("click"):
+	if Input.is_mouse_button_pressed(1) or Input.is_action_just_pressed("click"):
 		if can_put_egg:
-			Events.emit_signal("right_click_table")
-		else:
-			Events.emit_signal("turn_on")
-		#print("hmm")
-			flip()
-#	if can_put_egg  and event.is_action_pressed("right_click"):
-#		Events.emit_signal("right_click_table")
+			Events.emit_signal("right_click_table",position)
+	if Input.is_action_just_pressed("click"):
+		if not can_put_egg:
+			if current_time - last_time>hack_time:
+				
+				Events.emit_signal("turn_on")
+				#print("hmm")
+				flip()
+			last_time = current_time
+		
+		
 
 func _on_StaticBody2D_mouse_entered():
 	if Util.game_end:
@@ -64,3 +72,4 @@ func _on_StaticBody2D_mouse_entered():
 		return
 	if Input.is_mouse_button_pressed(1):  # Left mouse button.
 		flip()
+	

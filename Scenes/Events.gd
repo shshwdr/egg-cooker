@@ -3,7 +3,7 @@ extends Node
 signal pay(money)
 signal left()
 signal fully_left(position_index)
-signal right_click_table()
+signal right_click_table(position)
 
 signal found_chicken()
 signal turn_on()

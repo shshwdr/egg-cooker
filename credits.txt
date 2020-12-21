@@ -1,7 +1,30 @@
+control:
+click on convoyer belt to crack an egg
+click/drag on stove to turn it on
+drag chicken to customer to make them happy
+
 background musics:
 https://www.bensound.com/
 
+sfx:
+cook:
+https://freesound.org/people/SamuelGremaud/sounds/511742/
+chicken:
+https://freesound.org/people/SieuAmThanh/sounds/479870/
+aww:
+https://freesound.org/people/sennotson/sounds/547589/
+restaurant bell:
+https://freesound.org/people/DataOperativeX/sounds/533267/
+yummy:
+https://freesound.org/people/dorr1/sounds/338959/
+cash register:
+https://freesound.org/people/Zott820/sounds/209578/
+burn:
+https://freesound.org/people/Kastenfrosch/sounds/521973/
+customer angry:
+https://freesound.org/people/Breviceps/sounds/493163/
+game over:
+https://freesound.org/people/Doctor_Jekyll/sounds/240195/
 
 art reference:
 character: Earthbound/Mother
-moon: Shoot the Moon
